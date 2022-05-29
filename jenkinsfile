@@ -1,0 +1,35 @@
+pipeline{
+    agent{
+        label 'NODEJS'
+        }
+    triggers{
+        cron('0 * * * *')
+        }
+    stages{
+        stage('git checkout')
+            steps{
+                git url: 'https://github.com/ashishdevops123/nodejs.git' ,
+                    branch: 'main'
+
+            }
+        stage('build'){
+            steps{
+                sh 'npm install'
+                sh 'npm run build'    
+        
+            }
+        }    
+        stage('unit test'){
+            steps{
+                sh 'npm test'
+            }
+
+        } 
+
+           
+    }
+
+            
+
+            
+            
