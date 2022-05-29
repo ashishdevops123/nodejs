@@ -1,35 +1,26 @@
 pipeline{
-    agent{
-        label 'NODEJS'
-        }
-    triggers{
-        cron('0 * * * *')
-        }
+    agent{ label 'NODEJS'}
+    triggers{ cron('0 * * * 1-5') }
+    
     stages{
-        stage('git checkout')
+        stage('git checkout'){
             steps{
-                git url: 'https://github.com/ashishdevops123/nodejs.git' ,
+                git url: 'https://github.com/ashishdevops123/nodejs.git',
                     branch: 'main'
-
             }
+        }
+
         stage('build'){
             steps{
-                sh 'npm install',
-                sh 'npm run build'    
-        
-            }
-        }    
-        stage('unit test'){
-            steps{
+                sh 'npm install'
+                sh 'npm run build'
                 sh 'npm test'
             }
+        }
 
-        } 
-
-           
+        
     }
-}
-            
 
-            
-            
+               
+    
+}
