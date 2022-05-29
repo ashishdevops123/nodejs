@@ -18,7 +18,11 @@ pipeline{
             }
         }
 
-        
+        stage('sonar analysis'){
+            steps{
+                
+            }
+        }
     }
 
                
